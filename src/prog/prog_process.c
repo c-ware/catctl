@@ -38,7 +38,12 @@ void catctl_process(struct CatctlArguments args) {
 
 
     else if(strcmp(args.command, "band") == 0) {
-        catctl_change_band(atoi(args.argument), rigStatus, device);
+        char* band = catctl_string_band(args.argument);
+        if(strcmp(band, "?") == 0) {
+            fprintf(stderr, "catctl: unknown band '%s'\n", args.argument);
+            exit(EXIT_FAILURE);
+        }
+        catctl_change_band(band, rigStatus, device);
     }
 
     else {

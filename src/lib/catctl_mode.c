@@ -3,10 +3,6 @@
 #include <string.h>
 #include <catctl.h>
 
-#define CATCTL_MODE(name, retMacName) \
-    if(strcmp(mode, name) == 0) \
-        return CAT_MODE_ ## retMacName;
-
 char* catctl_string_mode(char* mode) {
     CATCTL_MODE("fm", FM)
     CATCTL_MODE("am", AM)

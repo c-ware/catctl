@@ -10,6 +10,7 @@
  * 
  * @embed structure: CatFrequency
  * @embed structure: CatStatus
+ * @embed macro_function: CATCTL_MODE
 */
 
 
@@ -42,6 +43,23 @@
 #define CAT_SHIFT_UP 0
 #define CAT_SHIFT_DOWN 0
 
+/* Band indices. Strings, because some radios use letters. */
+#define CAT_BAND_160 "00"
+#define CAT_BAND_80 "01"
+#define CAT_BAND_40 "03"
+#define CAT_BAND_30 "04"
+#define CAT_BAND_20 "05"
+#define CAT_BAND_17 "06"
+#define CAT_BAND_15 "07"
+#define CAT_BAND_12 "08"
+#define CAT_BAND_10 "09"
+#define CAT_BAND_6 "10"
+#define CAT_BAND_GENCOV "11"
+#define CAT_BAND_MEDIUMWAVE "12"
+#define CAT_BAND_VHFAIR "14"
+#define CAT_BAND_2 "15"
+#define CAT_BAND_70 "16"
+
 /* Structures */
 
 /*
@@ -72,7 +90,7 @@ struct CatFrequency {
  * @field mode: current mode letter
  * @type: char* 
  * @field band: current band number
- * @type: int
+ * @type: char*
  * @field micgain: current microphone gain
  * @type: int
  * @field power: current RF output power
@@ -86,7 +104,7 @@ struct CatFrequency {
 struct CatStatus {
 	struct CatFrequency frequency;
 	char* mode;
-    int band;
+    char* band;
 	int micgain;
 	int power;
 	int volume;
@@ -94,11 +112,58 @@ struct CatStatus {
     int rptshift;
 };
 
+/* Macro-functions */
+
+/*
+ * @docgen: macro_function
+ * @brief: Convert mode text names to mode indices. 
+ * @name: CATCTL_MODE
+ *
+ * @notes
+ * @This is ONLY usable within the catctl_string_mode function.
+ * @notes
+ *
+ * @param name: Mode name, like "lsb"
+ * @param macro: The CATCTL_MODE_xyz macro that returns an integer.
+*/
+#define CATCTL_MODE(name, macro) \
+    if(strcmp(mode, name) == 0) \
+        return CAT_MODE_ ## macro;
+
+
+/*
+ * @docgen: macro_function
+ * @brief: Convert band text names like "70cm" or "10m" into band numbers.
+ * @name: CATCTL_BAND
+ *
+ * @notes
+ * @This is ONLY usable within the catctl_string_band function.
+ * @notes
+ *
+ * @param name: Band name, like "6m"
+ * @param macro: The CATCTL_MODE_xyz macro that returns an integer.
+*/
+#define CATCTL_BAND(name, macro) \
+    if(strcmp(band, name) == 0) \
+        return CAT_BAND_ ## macro;
+
 /* Change frequency
  * FA014250000; <-- 14.250
  * FA007272000; <-- 7.272
  * FA050125000; <-- 50.125
  */
+
+/* 
+ * @docgen: function
+ * @name: catctl_change_freq
+ * @brief: Change frequency
+ * @param freq: The frequency structure.
+ * @type: struct CatFrequency
+ * @param status: The rig status structure.
+ * @type: struct CatStatus
+ * @param device: The output device.
+ * @type: FILE*
+*/
 void catctl_change_freq(struct CatFrequency freq, struct CatStatus status,
     FILE* device);
 
@@ -111,6 +176,18 @@ struct CatFrequency catctl_string_freq(char* string);
  * MD02; <-- USB
  * MD04; <-- FM
  */
+
+/* 
+ * @docgen: function
+ * @name: catctl_change_mode
+ * @brief: Change mode
+ * @param mode: The new mode, as a string.
+ * @type: char*
+ * @param status: The rig status structure.
+ * @type: struct CatStatus
+ * @param device: The output device.
+ * @type: FILE*
+*/
 void catctl_change_mode(char* mode, struct CatStatus status, FILE* device);
 
 /* Read Mode (and update status)
@@ -127,12 +204,35 @@ char* catctl_string_mode(char* mode);
  * AG0070; <-- volume to 50
  */
 
+/* 
+ * @docgen: function
+ * @name: catctl_change_volume
+ * @brief: Change output volume
+ * @param volume: The new volume, 0-255.
+ * @type: int
+ * @param status: The rig status structure.
+ * @type: struct CatStatus
+ * @param device: The output device.
+ * @type: FILE*
+*/
 void catctl_change_volume(int volume, struct CatStatus status, FILE* device);
 
 /* Change band
  * BS10; <- 6 meters
  */
-void catctl_change_band(int band, struct CatStatus status, FILE* device);
+
+/* 
+ * @docgen: function
+ * @name: catctl_change_band
+ * @brief: Change tuned band
+ * @param volume: The new band number
+ * @type: char*
+ * @param status: The rig status structure.
+ * @type: struct CatStatus
+ * @param device: The output device.
+ * @type: FILE*
+*/
+void catctl_change_band(char* band, struct CatStatus status, FILE* device);
 
 /*
  * Increment to the next band.
@@ -141,7 +241,7 @@ void catctl_change_band_up(struct CatStatus status, FILE* device);
 
 /* Convert a string to a band number
  */
-int catctl_string_band(char* mode);
+char* catctl_string_band(char* band);
 
 
 /* Control CW break-in
