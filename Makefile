@@ -10,7 +10,7 @@ PROGOBJ=src/prog/prog_main.o src/prog/prog_argparse.o src/prog/prog_process.o sr
 
 MANUALS=
 
-LIBS=libcatctl.a
+LIBS=src/lib/libcatctl.a
 
 PROGS=catctl
 

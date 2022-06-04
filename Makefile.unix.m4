@@ -12,7 +12,7 @@ PROGOBJ=syscmd(`find src/prog -type f -name "*.c" | tr "\n" " " | sed "s/\.c/.o/
 
 MANUALS=syscmd(`for f in $(find . -type f -name "*.cware"); do echo $f | xargs basename; done | tr "\n" " "')
 
-LIBS=libcatctl.a
+LIBS=src/lib/libcatctl.a
 
 PROGS=catctl
 
