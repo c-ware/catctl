@@ -1,0 +1,54 @@
+.TH "Catctl" "Section" "Date" "" "Title"
+.SH NAME
+Catctl - control amateur radios using the CAT protocol
+.SH SYNOPSIS
+
+.br
+
+/* The radio's current frequency */
+.br
+struct CatFrequency {
+.br
+.RS  0.4i
+.br
+int mhz;                      /* frequency MHz position */
+.br
+int khz;                      /* frequency KHz position */
+.br
+int hz;                       /* frequency hz position */
+.br
+.RE
+.br
+};
+.br
+/* The status of the connected radio */
+.br
+struct CatStatus {
+.br
+.RS  0.4i
+.br
+struct CatFrequency frequency; /* radio frequency */
+.br
+char* mode;                   /* current mode letter */
+.br
+int band;                     /* current band number */
+.br
+int micgain;                  /* current microphone gain */
+.br
+int power;                    /* current RF output power */
+.br
+int volume;                   /* current AF volume */
+.br
+int rptshift;                 /* current repeater shift mode */
+.br
+.RE
+.br
+};
+.br
+
+.br
+.SH DESCRIPTION
+This is the manual page for the catctl library. For information on the
+catctl program, please run "man 1 catctl" to display it. 
+.SH SEE ALSO
+This project has no references.
