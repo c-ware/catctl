@@ -46,6 +46,10 @@ void catctl_process(struct CatctlArguments args) {
         catctl_change_band(band, rigStatus, device);
     }
 
+    else if(strcmp(args.command, "ptt") == 0) {
+        catctl_change_ptt(atoi(args.argument), rigStatus, device);
+    }
+
     else {
         printf("catctl: unknown command '%s'\n", args.command);
     }

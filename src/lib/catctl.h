@@ -110,6 +110,7 @@ struct CatStatus {
 	int volume;
     int breakin;
     int rptshift;
+    int ptt;
 };
 
 /* Macro-functions */
@@ -242,6 +243,9 @@ void catctl_change_band_up(struct CatStatus status, FILE* device);
 /* Convert a string to a band number
  */
 char* catctl_string_band(char* band);
+
+/* Toggle the PTT operator */
+void catctl_change_ptt(int whence, struct CatStatus status, FILE* device);
 
 
 /* Control CW break-in

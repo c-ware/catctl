@@ -1,0 +1,26 @@
+Using catctl to operate satellites
+
+
+When paired with a well-timed shell script using the "sleep" command, you can
+use catctl to automatically adjust for doppler shift as the satellite flies
+overhead. Please note that this is not a valid substitute for listening for
+yourself on the satellite's downlink, but, you might find this to be a valuable
+tool for operating FM satellites such as the ISS or AO-91.
+
+Let's design a satellite that has an uplink on 145.990 and a downlink on 
+437.800. Since the uplink is on 2 meters, the doppler shift isn't too bad.
+However, that 70 centimeter downlink is going to be really drifty during the
+sat pass. As such, you would want to use a set of "freq" commands. You could
+use a loop, but, it is probably more advisable to have more precise timing
+like so:
+
+catctl freq 437.795 /dev/ttyUSB1
+sleep 16
+catctl freq 437.800 /dev/ttyUSB1
+sleep 13
+catctl freq 437.805 /dev/ttyUSB1
+
+Of course, this is just an example, and, the fictional satellite here is, 
+despite the strong allustion to the Interational Space Station, not the ISS.
+
+

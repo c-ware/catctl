@@ -1,0 +1,23 @@
+catctl command list
+
+COMMAND: mode
+DESCRIPTION: Set the radio's modulation mode.
+ARGUMENTS: Modulation mode:
+am, fm, lsb, usb, cw, cw-lsb, cw-usb, rtty, rtty-usb, rtty-lsb, data, data-lsb, data-usb, am-nar, fm-nar, c4fm, dstar, dv
+
+COMMAND: rptshift
+DESCRIPTION: Set an FM repeater capable radio's repeater shift direction.
+ARGUMENTS: Shift direction:
++, -, s (simplex)
+
+
+COMMAND: freq
+DESCRIPTION: Set the VFO frequency.
+ARGUMENTS: Frequency in MHz:
+14.300
+
+COMMAND: band
+DESCRIPTION: Set the band range.
+ARGUMENTS: Band number (you will likely need to edit the catctl.h macros for your radio)
+
+
