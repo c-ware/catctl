@@ -1,0 +1,5 @@
+.DS_Store
+catctl
+src/lib/*.o
+src/lib/*.a
+src/prog/*.o
