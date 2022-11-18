@@ -49,6 +49,26 @@ void catctl_process(struct CatctlArguments args) {
     else if(strcmp(args.command, "ptt") == 0) {
         catctl_change_ptt(atoi(args.argument), rigStatus, device);
     }
+    
+    else if(strcmp(args.command, "sql_tenc") == 0) {
+        catctl_change_squelch(CAT_SQL_TENC, rigStatus, device);
+        catctl_change_tone(0, atoi(args.argument), rigStatus, device);
+    }
+    else if(strcmp(args.command, "sql_tdec") == 0) {
+        catctl_change_squelch(CAT_SQL_TENCDEC, rigStatus, device);
+        catctl_change_tone(0, atoi(args.argument), rigStatus, device);
+    }
+    else if(strcmp(args.command, "sql_denc") == 0) {
+        catctl_change_squelch(CAT_SQL_DENC, rigStatus, device);
+        catctl_change_tone(0, atoi(args.argument), rigStatus, device);
+    }
+    else if(strcmp(args.command, "sql_ddec") == 0) {
+        catctl_change_squelch(CAT_SQL_DENCDEC, rigStatus, device);
+        catctl_change_tone(0, atoi(args.argument), rigStatus, device);
+    }
+    else if(strcmp(args.command, "sql_none") == 0) {
+        catctl_change_squelch(CAT_SQL_NONE, rigStatus, device);
+    }
 
     else {
         printf("catctl: unknown command '%s'\n", args.command);

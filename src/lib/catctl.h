@@ -60,6 +60,13 @@
 #define CAT_BAND_2 "15"
 #define CAT_BAND_70 "16"
 
+/* FM Squelch Modes */
+#define CAT_SQL_NONE 0
+#define CAT_SQL_TENCDEC 1
+#define CAT_SQL_TENC 2
+#define CAT_SQL_DENCDEC 3
+#define CAT_SQL_DENC 4
+
 /* Structures */
 
 /*
@@ -111,6 +118,8 @@ struct CatStatus {
     int breakin;
     int rptshift;
     int ptt;
+    int sqltype;
+    int sqlcode;
 };
 
 /* Macro-functions */
@@ -261,5 +270,21 @@ void catctl_change_rptshift(int type, struct CatStatus status, FILE* device);
 /* Convert +, -, or S to a shift macro
  */
 int catctl_string_rptshift(char* string);
+
+/*
+ * Change/enable a PL or DPL repeater tone.
+ *
+ * @param type: 0 for CTCSS, 1 for DCS
+ * @param code: DCS or PL code (see the macro table)
+ */
+void catctl_change_tone(int type, int code, struct CatStatus status,
+    FILE* device);
+
+/*
+ * Set the squelch type in FM.
+ *
+ * @param type: the squelch type macro
+ */
+void catctl_change_squelch(int type, struct CatStatus status, FILE* device);
 
 #endif

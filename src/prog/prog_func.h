@@ -8,7 +8,6 @@ struct CatctlArguments {
     int opt_list;
 };
 
-
 int catctl_parameters(const char* option);
 void catctl_error(const char* option, int type, int expected, int got);
 struct CatctlArguments parse_arguments(int argc, char* argv[]);
