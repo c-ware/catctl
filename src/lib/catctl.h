@@ -67,6 +67,58 @@
 #define CAT_SQL_DENCDEC 3
 #define CAT_SQL_DENC 4
 
+/* FM Squelch Tones (PL tones) */
+#define CAT_PL_TONE_000 67.0
+#define CAT_PL_TONE_001 69.3
+#define CAT_PL_TONE_002 71.9
+#define CAT_PL_TONE_003 74.4
+#define CAT_PL_TONE_004 77.0
+#define CAT_PL_TONE_005 79.7
+#define CAT_PL_TONE_006 82.5
+#define CAT_PL_TONE_007 85.4
+#define CAT_PL_TONE_008 88.5
+#define CAT_PL_TONE_009 91.5
+#define CAT_PL_TONE_010 94.8
+#define CAT_PL_TONE_011 97.4
+#define CAT_PL_TONE_012 100.0
+#define CAT_PL_TONE_013 103.5
+#define CAT_PL_TONE_014 107.2
+#define CAT_PL_TONE_015 110.9
+#define CAT_PL_TONE_016 114.8
+#define CAT_PL_TONE_017 118.8
+#define CAT_PL_TONE_018 123.0
+#define CAT_PL_TONE_019 127.3
+#define CAT_PL_TONE_020 131.8
+#define CAT_PL_TONE_021 136.5
+#define CAT_PL_TONE_022 141.3
+#define CAT_PL_TONE_023 146.2
+#define CAT_PL_TONE_024 151.4
+#define CAT_PL_TONE_025 156.7
+#define CAT_PL_TONE_026 159.8
+#define CAT_PL_TONE_027 162.2
+#define CAT_PL_TONE_028 165.5
+#define CAT_PL_TONE_029 167.9
+#define CAT_PL_TONE_030 171.3
+#define CAT_PL_TONE_031 173.8
+#define CAT_PL_TONE_032 177.3
+#define CAT_PL_TONE_033 179.9
+#define CAT_PL_TONE_034 183.5
+#define CAT_PL_TONE_035 186.2
+#define CAT_PL_TONE_036 189.9
+#define CAT_PL_TONE_037 192.8
+#define CAT_PL_TONE_038 196.6
+#define CAT_PL_TONE_039 199.5
+#define CAT_PL_TONE_040 203.5
+#define CAT_PL_TONE_041 206.5 
+#define CAT_PL_TONE_042 210.7 
+#define CAT_PL_TONE_043 218.1 
+#define CAT_PL_TONE_044 225.7 
+#define CAT_PL_TONE_045 229.1 
+#define CAT_PL_TONE_046 233.6 
+#define CAT_PL_TONE_047 241.8 
+#define CAT_PL_TONE_048 250.3 
+#define CAT_PL_TONE_049 254.1 
+
 /* Structures */
 
 /*
