@@ -1,0 +1,22 @@
+Using catctl to automatically input a repeater shift
+
+To use catctl to automatically load repeaters, simply use commands like this:
+mode fm
+band 2m
+freq 145.490
+rptshift -
+sql_tenc 8
+This selects a repeater with an output on 145.490 MHz, a negative 600kHz (the
+default) shift, and an access tone of "8" that corresponds to 88.5 Hz. 
+
+This can easily be automated by reading in values from a CSV file, or an
+findex-compatible database. 
+
+Notes:
+1. The findex-compatible database reader functionality is currently not
+implemented.
+2. The CTCSS tone must be entered as a numeric code, not a frequency. You will
+want to check catctl.h in order to match up the CTCSS and DCS codes/tones to
+their numeric value. 
+3. The shift value is currently not changable; the radios that this program
+were designed to require a dual-VFO split to achieve a weird offset. 
